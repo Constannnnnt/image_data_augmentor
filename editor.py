@@ -206,7 +206,6 @@ def image_gaussian_noise(img, mean = 0, variance = 0.1, use_random = False):
 
     return np.array(noisy_img).astype(np.uint8)
 
-
 def image_pca_jittering(img, mean = 0, variance = 0.1, use_random = False):
     """Given an image, perform pca jittering
 
@@ -228,7 +227,7 @@ def image_pca_jittering(img, mean = 0, variance = 0.1, use_random = False):
     one_channel_size = pil_img.size // 3
     img1 = pil_img.reshape(one_channel_size, 3)
     img1 = np.transpose(img1)
-    img_cov = np.transpose(img1)
+    img_cov = np.cov([img1[0], img1[1], img1[2]])
     lamda, p = np.linalg.eig(img_cov)
 
     p = np.transpose(p)
@@ -249,7 +248,6 @@ def image_pca_jittering(img, mean = 0, variance = 0.1, use_random = False):
     img = cv2.cvtColor(np.array(img2), cv2.COLOR_RGB2BGR)
 
     return img
-
 
 def image_channel_shifting(img, intensity = 10, channel_idx = 0, use_random = False):
     """ Given an image, shift one channel by the intensity
