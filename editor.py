@@ -232,9 +232,9 @@ def image_pca_jittering(img, mean = 0, variance = 0.1, use_random = False):
 
     p = np.transpose(p)
 
-    alpha1 = random.normal(variate(mean, variance))
-    alpha2 = random.normal(variate(mean, variance))
-    alpha3 = random.normal(variate(mean, variance))
+    alpha1 = random.normalvariate(mean, variance)
+    alpha2 = random.normalvariate(mean, variance)
+    alpha3 = random.normalvariate(mean, variance)
 
     v = np.transpose((alpha1 * lamda[0], alpha2 * lamda[1], alpha3 * lamda[2]))
 
